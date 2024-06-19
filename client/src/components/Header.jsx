@@ -1,57 +1,56 @@
+import React from 'react';
 import { Navbar, TextInput, Button } from 'flowbite-react';
 import { Link, useLocation } from 'react-router-dom';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { FaMoon } from 'react-icons/fa';
 
 export default function Header() {
-    const path = useLocation().pathname
+  const path = useLocation().pathname;
+
   return (
-    <Navbar className='border-b-2 py-2 px-4 flex justify-between items-center'>
-      <Link to="/" className='text-white text-xl font-semibold bg-gradient-to-r from-orange-500 via-yellow-500 to-pink-500 px-3 py-1 rounded-lg'>
-        Sidharth's Blog
+    <Navbar className='border-b-2'>
+      <Link to="/" className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'>
+        <span className='px-2 py-1 bg-gradient-to-r from-orange-500 to-yellow-500 rounded-lg text-white'>Sidharth's Blog</span>
       </Link>
-      <form className="ml-auto hidden lg:flex">
-        <TextInput 
+      <form>
+        <TextInput
           type='text'
           placeholder='Search...'
-          rightIcon={AiOutlineSearch}
-          className='bg-gray-100 text-gray-700 px-3 py-1 rounded-lg focus:outline-none focus:ring focus:border-blue-300'
+          icon={AiOutlineSearch}
+          className='hidden lg:inline'
         />
       </form>
-      <div className="flex items-center space-x-4">
-        <Button className='w-12 h-10 lg:hidden' color='gray' pill>
-          <AiOutlineSearch />
-        </Button>
-        <Button className='w-12 h-10 hidden sm:inline' color='gray' pill>
+      <Button className='w-12 h-10 lg:hidden' color='gray'>
+        <AiOutlineSearch />
+      </Button>
+      <div className='flex gap-2 md:order-2'>
+        <Button className='w-12 h-10 hidden sm:inline' color='gray'>
           <FaMoon />
         </Button>
-
-        <Link to="/sign-in">
-          <Button gradientDuoTone="redToBlue" pill>
+        <Link to='/sign-in'>
+          <Button gradientDuoTone='purpleToBlue'>
             Sign In
           </Button>
         </Link>
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link>
-            <Link to='/' active={path==="/"} as={'div'}>
+        <Navbar.Link active={path === "/"} as={'div'}>
+          <Link to='/'>
             Home
-            </Link>
+          </Link>
         </Navbar.Link>
-        <Navbar.Link>
-            <Link to='/about' active={path==="/about"} as={'div'}>
+        <Navbar.Link active={path === "/about"} as={'div'}>
+          <Link to='/about'>
             About
-            </Link>
+          </Link>
         </Navbar.Link>
-        <Navbar.Link>
-            <Link to='/projects' active={path==="/projects"} as={'div'}>
+        <Navbar.Link active={path === "/projects"} as={'div'}>
+          <Link to='/projects'>
             Projects
-            </Link>
+          </Link>
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
-
   );
 }
-
